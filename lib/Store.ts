@@ -1,3 +1,4 @@
+import CartTotal from '@/components/CartTotal';
 import { create } from 'zustand';
 
 type Product = {
@@ -11,6 +12,7 @@ type Product = {
 type State = {
   products: Product[];
   added:boolean
+  cartItems:Product[] | null
 };
 
 type Actions = {
@@ -19,6 +21,7 @@ type Actions = {
 };
 
 export const cartStore = create<State & Actions>((set) => ({
+  cartItems:null,
   added:false,
   products: [
     {
@@ -32,7 +35,7 @@ export const cartStore = create<State & Actions>((set) => ({
       id: 2,
       name: "sample2",
       price: 90,
-      image: "/products/1.png",
+      image: "/products/2.png",
       count: 0,
     },
     {
@@ -57,6 +60,7 @@ export const cartStore = create<State & Actions>((set) => ({
       count: 0,
     },
   ],
+  
   increment: (index: number, qty: number) => {
     set((state) => {
       console.log({state})
@@ -78,4 +82,17 @@ export const cartStore = create<State & Actions>((set) => ({
       return { products: updatedProducts };
     });
   },
+
+  // let cart:string|null=JSON.parse(localStorage.getItem("cart"))
+  getCart:()=>{
+
+  },
+
+  // setCart: (item: Product) => {
+  //   set((state) => {
+  //     state.cartItems = [...state.cartItems, item]; // Append the new item to the existing cartItems
+  //   });
+  // },
+
+  
 }));
