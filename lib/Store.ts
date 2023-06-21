@@ -1,7 +1,8 @@
 import CartTotal from '@/components/CartTotal';
 import { create } from 'zustand';
+import { devtools,persist} from 'zustand/middleware';
 
-type Product = {
+export type Product = {
   id: number;
   name: string;
   price: number;
@@ -9,19 +10,21 @@ type Product = {
   count: number;
 };
 
-type State = {
+export type State = {
   products: Product[];
   added:boolean
-  cartItems:Product[] | null
+  cartItems:Product[] 
 };
 
-type Actions = {
+export type Actions = {
   increment: (index: number, qty: number) => void;
   decrement: (index: number, qty: number) => void;
+  setCart: (items:Product) => void;
+  deleteCart:(id:number)=>void
 };
 
-export const cartStore = create<State & Actions>((set) => ({
-  cartItems:null,
+const cartStore = (set:any) => ({
+  cartItems:[],
   added:false,
   products: [
     {
@@ -88,11 +91,31 @@ export const cartStore = create<State & Actions>((set) => ({
 
   },
 
-  // setCart: (item: Product) => {
-  //   set((state) => {
-  //     state.cartItems = [...state.cartItems, item]; // Append the new item to the existing cartItems
-  //   });
-  // },
 
-  
-}));
+
+  setCart: (item:Product)=>{
+    set((state)=>({
+     cartItems :[item, ...state.cartItems]//Append the new item to the existing
+    }))
+  },
+
+  deleteCart: (id)=>{
+    set((state)=>({
+     cartItems :state.cartItems.filter((c)=> c.id !== id)  //Append the new item to the existing
+    }))
+  }
+
+
+
+});
+
+
+const useCartStore = create(
+  devtools(
+   persist(cartStore,{
+    name:"cart",
+   }) 
+  )
+)
+
+export default useCartStore

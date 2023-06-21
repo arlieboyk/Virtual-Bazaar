@@ -1,19 +1,24 @@
 "use client";
 import { StarIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import useCartStore, { Product } from "@/lib/Store";
+import {
+  ShoppingCartIcon,
+  HeartIcon,
+  ShoppingBagIcon
+} from "@heroicons/react/24/solid";
 
-interface Product {
-  name: string;
-  price: number;
-  image: string;
-}
+
 
 export default function Products() {
-  const { products, increment } = cartStore();
   // console.log(count)
   //   const products = [
-
-  //   ];
+    
+    //   ];
+    
+    const setCart = useCartStore(state=>state.setCart);
+    const increment = useCartStore(state=>state.increment);
+    const products:Product[] = useCartStore(state=>state.products)
 
   return (
     <div className="w-full">
@@ -26,7 +31,7 @@ export default function Products() {
                 key={key}
                 className="group relative  flex flex-col mx-auto justify-center items-center  w-[80%] md:w-2/3 lg:w-3/4   rounded shadow py-4 px-5"
               >
-                {items?.count}
+                {typeof window !== 'undefined' && items?.count}
                 {/* product image */}
                 <Image
                   src={items.image}
@@ -49,7 +54,7 @@ export default function Products() {
                     <StarIcon className="w-5 h-5" />
                   </div>
                 </div>
-                <ToolTip index={key} increment={increment} />
+                <ToolTip index={key} items={items} increment={increment} setCart={setCart}/>
               </div>
             );
           })}
@@ -59,15 +64,10 @@ export default function Products() {
   );
 }
 
-import {
-  ShoppingCartIcon,
-  HeartIcon,
-  ShoppingBagIcon
-} from "@heroicons/react/24/solid";
-import { useStore } from "zustand";
-import { cartStore } from "@/lib/Store";
 
-const ToolTip = ({ increment, index }: any) => {
+
+const ToolTip = ({items, increment, index ,setCart}: any) => {
+  console.log({items})
   return (
     <div className="flex flex-col opacity-0 duration-100 translate-x-[100px] group-hover:opacity-100 group-hover:-translate-x-0 group-hover:flex space-y-2 absolute right-0 transition-all ease-linear ">
       <button
@@ -76,7 +76,7 @@ const ToolTip = ({ increment, index }: any) => {
       >
         <ShoppingCartIcon className="w-[29px] h-[29px] text-[#e4cfae]" />
       </button>
-      <button className="hover:scale-[1.05] rounded-full w-12 h-12 bg-[#e4cfae] group-hover:-translate-x-4  duration-150 p-2 text-center align-middle transition-all ease-linear">
+      <button onClick={()=>setCart(items)} className="hover:scale-[1.05] rounded-full w-12 h-12 bg-[#e4cfae] group-hover:-translate-x-4  duration-150 p-2 text-center align-middle transition-all ease-linear">
         <HeartIcon className="w-[29px] h-[29px] text-white" />
       </button>
       <button className="hover:scale-[1.05] rounded-full w-12 h-12 bg-[#e4cfae] group-hover:-translate-x-4  duration-150 p-2 text-center align-middle transition-all ease-linear">
