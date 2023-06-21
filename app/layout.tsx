@@ -1,11 +1,7 @@
-'use client'
 import Nav from "@/components/Nav";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { Terminal, Waves } from "lucide-react";
-
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { cartStore } from "@/lib/Store";
+import AlertComp from "@/components/Alert";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,20 +15,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { added } = cartStore();
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="sticky w-1/2 left-6 top-12 z-50">
-        {added && (
-          <Alert  variant={"default"} className=" border-green-500">
-            <Terminal className="h-4 w-4" />
-            <AlertDescription  className="font-bold text-green-500">
-              Added to Cart!
-            </AlertDescription>
-          </Alert>
-        )}
-        </div>
+        <AlertComp />
         <Nav />
         {children}
       </body>
