@@ -4,7 +4,7 @@ import { ShoppingCartIcon, UserIcon } from "@heroicons/react/24/outline";
 export default function Nav() {
   return (
     <div
-      className="flex lg:flex justify-between  items-center shadow-sm z-10 w-full max-w-5xl  font-mono text-sm 
+      className="flex lg:flex justify-between  items-center shadow-sm z-10 w-full lg:px-12  font-mono text-sm 
     p-4 "
     >
       <Image src="/logo.png" alt="logo" width={300} height={200} />

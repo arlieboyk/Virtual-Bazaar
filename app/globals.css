@@ -3,8 +3,10 @@
 @tailwind utilities;
  
 
-
-
+/* *>*{
+  border:1px solid red
+}
+ */
 
 /* embla */
 .embla {
@@ -15,10 +17,26 @@
   display: flex;
 }
 .embla__slide {
-  flex: 0 0 50%;
+  flex: 0 0 40%;
   min-width: 0;
   margin-right: 20px;
   margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+  .embla__slide {
+    flex: 0 0 100%;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 1080px) {
+  .embla__slide {
+    flex: 0 0 50%;
+    margin-right: 20px;
+    margin-left: 10px;
+  }
 }
 
 
