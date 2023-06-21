@@ -30,33 +30,33 @@ const cartStore = (set:any) => ({
     {
       id: 0,
       name: "sample1",
-      price: 90,
+      price:290,
       image: "/products/1.png",
       count: 0,
     },
     {
-      id: 2,
+      id: 1,
       name: "sample2",
-      price: 90,
+      price: 2000,
       image: "/products/2.png",
       count: 0,
     },
     {
-      id: 3,
+      id: 2,
       name: "sample3",
       price: 90,
       image: "/products/1.png",
       count: 0,
     },
     {
-      id: 4,
+      id: 3,
       name: "sample4",
       price: 90,
       image: "/products/1.png",
       count: 0,
     },
     {
-      id: 5,
+      id: 4,
       name: "sample5",
       price: 90,
       image: "/products/1.png",
@@ -65,20 +65,20 @@ const cartStore = (set:any) => ({
   ],
   
   increment: (index: number, qty: number) => {
-    set((state) => {
+    set((state:State) => {
       console.log({state})
       const updatedProducts = [...state.products];
       updatedProducts[index].count += qty;
       const updatedState = { ...state, added: true };
     setTimeout(() => {
-      set((prevState) => ({ ...prevState, added: false }));
+      set((prevState:any) => ({ ...prevState, added: false }));
     }, 3000);
     
       return { ...updatedState ,products: updatedProducts };
     });
   },
   decrement: (index: number, qty: number) => {
-    set((state) => {
+    set((state:State) => {
       const updatedProducts = [...state.products];
       updatedProducts[index].count -= qty;
       state.added = true
@@ -94,17 +94,16 @@ const cartStore = (set:any) => ({
 
 
   setCart: (item:Product)=>{
-    set((state)=>({
+    set((state:State)=>({
      cartItems :[item, ...state.cartItems]//Append the new item to the existing
     }))
   },
 
-  deleteCart: (id)=>{
-    set((state)=>({
-     cartItems :state.cartItems.filter((c)=> c.id !== id)  //Append the new item to the existing
-    }))
+   deleteCart : (id:number) => {
+    set((state:State) => ({
+      cartItems: state.cartItems.filter((item) => item.id !== id)
+    }));
   }
-
 
 
 });
