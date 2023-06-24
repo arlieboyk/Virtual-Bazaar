@@ -32,7 +32,7 @@ router.push('/cart')
         <p className="font-semibold text-[#e4cfae]"> cart</p>
         <div className="relative">
           <div className="absolute  -top-[14px] left-4 w-4 h-4 bg-[#e4cfae] rounded-full text-center leading-4 text-white font-bold align-middle">
-          <small>  {total}</small>
+          <small>  {cartItems.length}</small>
           </div>
 
           <ShoppingCartIcon className="h-6 w-6 text-[#e4cfae]" />

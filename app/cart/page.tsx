@@ -1,11 +1,11 @@
-'use client'
+"use client";
 import useCartStore, { Product } from "@/lib/Store";
 import Image from "next/image";
-
+import { AiOutlineClose } from 'react-icons/ai';
 export default function Page() {
   const cartItems: Product[] = useCartStore((state) => state.cartItems);
   const deleteCart = useCartStore((state) => state.deleteCart);
-
+  console.log("items on cart ", cartItems);
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 w-full">
       {cartItems.map((items, key) => {
@@ -14,6 +14,12 @@ export default function Page() {
             key={key}
             className="group relative flex flex-col mx-auto justify-center items-center w-[80%] md:w-2/3 lg:w-3/4 rounded shadow py-4 px-5"
           >
+            <button
+              onClick={() => deleteCart(key)}
+              className="absolute right-4 top-4 z-[99] bg-blue-500 px-2 py-1 rounded-full h-8 w-8 text-white font-bold">
+            <AiOutlineClose/>
+            </button>
+
             {items?.count}
             {/* product image */}
             <Image
@@ -28,7 +34,14 @@ export default function Page() {
               <p className="text-rose-800">
                 Price: <span className="font-bold">{items.price}</span>{" "}
               </p>
-              <button onClick={()=>deleteCart(items.id)}>Romve items</button>
+              <div className="flex space-x-4">
+                <button
+                  onClick={() => {}}
+                  className="bg-blue-500 px-2 py-1 rounded text-white font-bold"
+                >
+                  Check Out
+                </button>
+              </div>
             </div>
           </div>
         );

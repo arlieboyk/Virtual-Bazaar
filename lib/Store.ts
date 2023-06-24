@@ -26,6 +26,7 @@ export type Actions = {
 const cartStore = (set:any) => ({
   cartItems:[],
   added:false,
+  count:0,
   products: [
     {
       id: 0,
@@ -100,8 +101,12 @@ const cartStore = (set:any) => ({
   },
 
    deleteCart : (id:number) => {
+    
+    console.log('delete ',id)
     set((state:State) => ({
-      cartItems: state.cartItems.filter((item) => item.id !== id)
+      cartItems: state.cartItems.filter((item,key) => key !== id)
+  
+      
     }));
   }
 

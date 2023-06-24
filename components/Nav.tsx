@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Nav() {
   return (
     <div
-      className="flex lg:flex justify-between  items-center shadow-sm z-10 w-full lg:px-12  text-sm 
+      className="flesx lg:flex justify-between  items-center shadow-sm z-10 w-full lg:px-12  text-sm 
     p-4 "
     >
       <Link href={'/'}>

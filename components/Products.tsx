@@ -71,7 +71,7 @@ const ToolTip = ({items, increment, index ,setCart}: any) => {
   return (
     <div className="flex flex-col opacity-0 duration-100 translate-x-[100px] group-hover:opacity-100 group-hover:-translate-x-0 group-hover:flex space-y-2 absolute right-0 transition-all ease-linear ">
       <button
-        onClick={() => increment(index, 1)}
+        onClick={() => {increment(index, 1) ,setCart(items) }}
         className="hover:scale-[1.05]  rounded-full  w-12 h-12 shadow bg-white group-hover:-translate-x-4 duration-150 p-2 text-center align-middle transition-all ease-linear"
       >
         <ShoppingCartIcon className="w-[29px] h-[29px] text-[#e4cfae]" />
