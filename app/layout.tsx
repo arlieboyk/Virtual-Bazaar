@@ -2,7 +2,7 @@ import Nav from "@/components/Nav";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import AlertComp from "@/components/Alert";
-
+import { BsFacebook, BsGoogle, BsInstagram } from "react-icons/bs";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -21,6 +21,39 @@ export default function RootLayout({
         <AlertComp />
         <Nav />
         {children}
+        <div className="footer-basic">
+          <footer>
+            <div className="social">
+              <a href="#">
+                <BsFacebook className="w-[40px] h-[40px] " />{" "}
+              </a>
+              <a href="#">
+                <BsInstagram className="w-[40px] h-[40px] " />{" "}
+              </a>
+              <a href="#">
+                <BsGoogle className="w-[40px] h-[40px] " />{" "}
+              </a>
+            </div>
+            <ul className="list-inline">
+              <li className="list-inline-item">
+                <a href="#">Home</a>
+              </li>
+              <li className="list-inline-item">
+                <a href="#">Services</a>
+              </li>
+              <li className="list-inline-item">
+                <a href="#">About</a>
+              </li>
+              <li className="list-inline-item">
+                <a href="#">Terms</a>
+              </li>
+              <li className="list-inline-item">
+                <a href="#">Privacy Policy</a>
+              </li>
+            </ul>
+            <p className="copyright">Company Name © 2018</p>
+          </footer>
+        </div>
       </body>
     </html>
   );
