@@ -1,6 +1,6 @@
 import CartTotal from '@/components/CartTotal';
 import { create } from 'zustand';
-import { devtools,persist} from 'zustand/middleware';
+import { devtools, persist ,createJSONStorage } from 'zustand/middleware';
 
 export type Product = {
   id: number;
@@ -12,74 +12,103 @@ export type Product = {
 
 export type State = {
   products: Product[];
-  added:boolean
-  cartItems:Product[] 
+  added: boolean
+  cartItems: Product[]
 };
 
 export type Actions = {
   increment: (index: number, qty: number) => void;
   decrement: (index: number, qty: number) => void;
-  setCart: (items:Product) => void;
-  deleteCart:(id:number)=>void
+  setCart: (items: Product) => void;
+  deleteCart: (id: number) => void
 };
 
-const cartStore = (set:any) => ({
-  cartItems:[],
-  added:false,
-  count:0,
+const cartStore = (set: any) => ({
+  cartItems: [],
+  added: false,
+  count: 0,
   products: [
     {
       id: 0,
-      name: "sample1",
-      price:290,
+      name: "Mens Gym workout short",
+      price: 290,
       image: "/products/1.png",
       count: 0,
     },
     {
       id: 1,
-      name: "sample2",
+      name: "Gym bag",
       price: 2000,
       image: "/products/2.png",
       count: 0,
     },
     {
       id: 2,
-      name: "sample3",
-      price: 90,
-      image: "/products/1.png",
+      name: "Women's Gym",
+      price: 290,
+      image: "/products/p5.png",
       count: 0,
     },
     {
       id: 3,
-      name: "sample4",
-      price: 90,
-      image: "/products/1.png",
+      name: "Women's Gym",
+      price: 290,
+      image: "/products/p3.png",
       count: 0,
     },
     {
       id: 4,
-      name: "sample5",
-      price: 90,
+      name: "Nike | Unisex Fury Headband 3.0",
+      price: 190,
+      image: "/products/p4.png",
+      count: 0,
+    },
+    {
+      id: 5,
+      name: "Salomon | Unisex Bonatti Aero Wind Jacket - White",
+      price: 390,
+      image: "/products/p6.png",
+      count: 0,
+    },
+    {
+      id: 6,
+      name: "Mens Gym workout short",
+      price: 190,
       image: "/products/1.png",
       count: 0,
     },
+  {
+    id: 7,
+    name: "On | Men's Cloudultra Running Shoes",
+    price: 600,
+    image: "/products/1.png",
+    count: 0,
+  },
+  {
+    id: 8,
+    name:"Hoka | Men's Speedgoat 5 Running Shoes -Deep Lakes",
+    price: 600,
+    image: "/products/1.png",
+    count: 0,
+  },
+
   ],
-  
+
   increment: (index: number, qty: number) => {
-    set((state:State) => {
-      console.log({state})
+    set((state: State) => {
+      console.log({ state })
       const updatedProducts = [...state.products];
       updatedProducts[index].count += qty;
       const updatedState = { ...state, added: true };
-    setTimeout(() => {
-      set((prevState:any) => ({ ...prevState, added: false }));
-    }, 3000);
-    
-      return { ...updatedState ,products: updatedProducts };
+      setTimeout(() => {
+        set((prevState: any) => ({ ...prevState, added: false }));
+      }, 3000);
+
+      return { ...updatedState, products: updatedProducts };
     });
   },
   decrement: (index: number, qty: number) => {
-    set((state:State) => {
+    set((state: State) => {
       const updatedProducts = [...state.products];
       updatedProducts[index].count -= qty;
       state.added = true
@@ -88,25 +117,25 @@ const cartStore = (set:any) => ({
   },
 
   // let cart:string|null=JSON.parse(localStorage.getItem("cart"))
-  getCart:()=>{
+  getCart: () => {
 
   },
 
 
 
-  setCart: (item:Product)=>{
-    set((state:State)=>({
-     cartItems :[item, ...state.cartItems]//Append the new item to the existing
+  setCart: (item: Product) => {
+    set((state: State) => ({
+      cartItems: [item, ...state.cartItems]//Append the new item to the existing
     }))
   },
 
-   deleteCart : (id:number) => {
-    
-    console.log('delete ',id)
-    set((state:State) => ({
-      cartItems: state.cartItems.filter((item,key) => key !== id)
-  
-      
+  deleteCart: (id: number) => {
+
+    console.log('delete ', id)
+    set((state: State) => ({
+      cartItems: state.cartItems.filter((item, key) => key !== id)
+
+
     }));
   }
 
@@ -116,9 +145,10 @@ const cartStore = (set:any) => ({
 
 const useCartStore = create(
   devtools(
-   persist(cartStore,{
-    name:"cart",
-   }) 
+    persist(cartStore, {
+      name: "cart",
+      storage:createJSONStorage(()=>sessionStorage)
+    })
   )
 )
 

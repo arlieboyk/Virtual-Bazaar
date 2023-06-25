@@ -41,7 +41,7 @@ export default function Products() {
                   className="hover:scale-105 transition-all duration-150"
                 />
                 <div className="self-start">
-                  <strong>Mens Gym Workout Short</strong>
+                  <strong>{items.name}</strong>
                   <p className="text-rose-800">
                     Price: <span className="font-bold">{items.price}</span>{" "}
                   </p>
