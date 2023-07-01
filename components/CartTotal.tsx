@@ -1,6 +1,7 @@
 "use client";
 import  useCartStore  from "@/lib/Store";
 import { ShoppingCartIcon, UserIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -39,6 +40,12 @@ router.push('/cart')
         </div>
       </button>
 
+      <Link href={'/contact'} className="font-semibold text-[#e4cfae]">
+        Contact
+      </Link>
+      <Link href={'/about'} className="font-semibold text-[#e4cfae]">
+        About
+      </Link>
       <button className="flex items-center space-x-2">
         <p className="font-semibold text-[#e4cfae]">Account</p>
 

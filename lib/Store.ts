@@ -91,6 +91,34 @@ const cartStore = (set: any) => ({
     image: "/products/1.png",
     count: 0,
   },
+  {
+    id: 9,
+    name:"Adjustable Weights Dumbbells Set, Non-Rolling Adjustable Dumbbell Set, Free Weights Dumbbells Set Hexagon, Weights Set for Home Gym, 20 Lbs",
+    price: 1000,
+    image: "/products/p9.jpg",
+    count: 0,
+  },
+  {
+    id: 10,
+    name:"OZELS Jump Rope, Adjustable Length Tangle-Free Segmented Soft Beaded Skipping Rope, Fitness Jump Rope for Kids, Man, and Women Weight Loss (Color : A)",
+    price: 200,
+    image: "/products/p10.jpg",
+    count: 0,
+  },
+  {
+    id: 11,
+    name:"HolaHatha Neoprene Dumbbell Free Hand Weight Set with Storage Rack, Ideal for Home Gym Exercises to Gain Tone and Definition",
+    price: 1000,
+    image: "/products/p11.jpg",
+    count: 0,
+  },
+  {
+    id: 11,
+    name:"LALAHIGH Push Up Board, Upgraded 15 in 1 Push Up Bar, Premium ABS Pushup Stands w/ Drawstring Bag, Professional Pushup System for Chest, Tricep, Back, & Abs Workout, Portable Home Strength Training Eq",
+    price: 600,
+    image: "/products/p11.jpg",
+    count: 0,
+  },
 
   ],
 

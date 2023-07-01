@@ -9,12 +9,11 @@ export default function Nav() {
       className="flex lg:flex justify-between  items-center shadow-sm z-10 w-full lg:px-12  text-sm 
     p-4 "
     >
-      <Link href={'/'}>
-      <Image src="/logo.png" alt="logo" width={300} height={200} />
+      <Link href={"/"}>
+        <Image src="/logo.png" alt="logo" width={300} height={200} />
       </Link>
 
-     <CartTotal/>
-
-    </div>  
+      <CartTotal />
+    </div>
   );
 }
